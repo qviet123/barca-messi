@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Barcelona & Lionel Messi - Huyền Thoại Bất Tử</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font chữ tiếng Việt chuẩn đẹp, 100% không lỗi dấu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        barca: {
+                            blue: '#004D98',
+                            garnet: '#A50044',
+                            gold: '#EDBB00',
+                            dark: '#0A0C10',
+                            card: '#121620',
+                            border: '#1F2536'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Oswald', '"Plus Jakarta Sans"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFE873 0%, #EDBB00 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .barca-gradient {
+            background: linear-gradient(135deg, #004D98 0%, #A50044 100%);
+        }
+
+        /* Ảnh Messi đen trắng có chiều sâu */
+        .messi-bw-frame {
+            filter: grayscale(100%) contrast(120%) brightness(95%);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .messi-bw-frame:hover {
+            filter: grayscale(20%) contrast(110%) brightness(100%);
+            transform: scale(1.02);
+        }
+
+        /* Thẻ ảnh hover */
+        .card-photo {
+            transition: all 0.4s ease;
+        }
+        .card-photo:hover {
+            transform: translateY(-6px);
+            border-color: #EDBB00;
+        }
+        .card-photo img {
+            filter: grayscale(100%);
+            transition: all 0.5s ease;
+        }
+        .card-photo:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Mặt sân bóng Tiki-Taka */
+        .pitch-field {
+            background: radial-gradient(circle at center, #0e1e17 0%, #060b08 100%);
+            border: 2px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+        }
+        .pitch-line {
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-barca-dark text-slate-100 selection:bg-barca-garnet selection:text-white antialiased">
+
+    <!-- ==================== HEADER CAO CẤP ==================== -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#0a0c10]/90 backdrop-blur-xl border-b border-white/10 transition-all">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo CLB & Tên thương hiệu -->
+            <a href="#trang-chu" class="flex items-center space-x-3.5 group">
+                <img src="images/barca-logo.svg" 
+                     alt="Logo FC Barcelona" 
+                     class="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(237,187,0,0.35)] group-hover:rotate-6 transition duration-300">
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-wider font-display text-white uppercase leading-tight group-hover:text-barca-gold transition">
+                        FC BARCELONA
+                    </span>
+                    <span class="text-[11px] font-semibold tracking-wider text-barca-gold uppercase">
+                        Hơn cả một câu lạc bộ
+                    </span>
+                </div>
+            </a>
+
+            <!-- Thanh menu điều hướng (100% tiếng Việt) -->
+            <nav class="hidden lg:flex items-center space-x-8 text-sm font-semibold tracking-wide text-gray-300">
+                <a href="#trang-chu" class="hover:text-barca-gold transition">Trang chủ</a>
+                <a href="#huyen-thoai-messi" class="hover:text-barca-gold transition">Huyền thoại Messi</a>
+                <a href="#so-do-tikitaka" class="hover:text-barca-gold transition">Sơ đồ Tiki-Taka</a>
+                <a href="#the-he-vang" class="hover:text-barca-gold transition">Đội hình vàng</a>
+                <a href="#thu-vien-anh" class="hover:text-barca-gold transition">Ảnh câu lạc bộ</a>
+                <a href="#phong-truyen-thong" class="hover:text-barca-gold transition">Phòng truyền thống</a>
+            </nav>
+
+            <!-- Nút hành động nổi bật -->
+            <div class="flex items-center space-x-4">
+                <a href="#so-do-tikitaka" class="px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider barca-gradient text-white hover:brightness-110 shadow-lg shadow-barca-garnet/30 transition">
+                    <i class="fa-solid fa-futbol mr-1.5 text-barca-gold"></i> Chiến thuật 2009
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==================== PHẦN HERO: THÔNG TIN BÊN TRÁI - ẢNH MESSI NẰM BÊN PHẢI ==================== -->
+    <section id="trang-chu" class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+        <!-- Vạch lưới nền mờ tinh tế -->
+        <div class="absolute inset-0 bg-[radial-gradient(#ffffff0a_1px,transparent_1px)] [background-size:24px_24px] z-0"></div>
+
+        <div class="max-w-7xl mx-auto px-6 w-full relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- CỘT TRÁI: NỘI DUNG VĂN BẢN (7 CỘT) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+                        <span class="w-2.5 h-2.5 rounded-full bg-barca-gold animate-pulse"></span>
+                        <span class="text-xs uppercase tracking-wider font-semibold text-gray-300">
+                            Biểu Tượng Vĩ Đại Nhất Mọi Thời Đại
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl xl:text-7xl font-bold font-display uppercase tracking-tight text-white leading-tight">
+                        LIONEL <span class="gold-gradient">MESSI</span><br>
+                        <span class="text-2xl sm:text-4xl font-normal text-gray-300">VÀ TRIỀU ĐẠI BARCELONA</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-gray-300 leading-relaxed font-normal max-w-xl">
+                        Khám phá hành trình 21 năm bất diệt của số 10 huyền thoại tại thánh địa Camp Nou. Từ cậu bé La Masia đến biểu tượng vĩ đại bậc nhất lịch sử bóng đá thế giới.
+                    </p>
+
+                    <!-- Thống kê nhanh nổi bật -->
+                    <div class="grid grid-cols-3 gap-4 pt-4 max-w-lg">
+                        <div class="p-3.5 bg-barca-card rounded-xl border border-barca-border text-center">
+                            <div class="text-3xl font-bold font-display text-white">672</div>
+                            <div class="text-[11px] text-gray-400 uppercase mt-0.5 font-medium">Bàn thắng</div>
+                        </div>
+                        <div class="p-3.5 bg-barca-card rounded-xl border border-barca-border text-center">
+                            <div class="text-3xl font-bold font-display text-white">35</div>
+                            <div class="text-[11px] text-gray-400 uppercase mt-0.5 font-medium">Danh hiệu</div>
+                        </div>
+                        <div class="p-3.5 bg-barca-card rounded-xl border border-barca-border text-center">
+                            <div class="text-3xl font-bold font-display gold-gradient">8</div>
+                            <div class="text-[11px] text-barca-gold uppercase mt-0.5 font-bold">Quả bóng vàng</div>
+                        </div>
+                    </div>
+
+                    <!-- Nút bấm hành động -->
+                    <div class="flex flex-wrap gap-4 pt-3">
+                        <a href="#huyen-thoai-messi" class="px-7 py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs bg-barca-gold text-black hover:bg-yellow-400 transition shadow-lg shadow-barca-gold/20">
+                            Tìm hiểu di sản số 10
+                        </a>
+                        <a href="#so-do-tikitaka" class="px-7 py-3.5 rounded-xl font-bold uppercase tracking-wider text-xs border border-white/20 hover:border-barca-gold text-white bg-white/5 backdrop-blur-md transition">
+                            Xem sơ đồ chiến thuật
+                        </a>
+                    </div>
+                </div>
+
+                <!-- CỘT PHẢI: HÌNH ẢNH MESSI NỀN TRẮNG ĐEN (5 CỘT) -->
+                <div class="lg:col-span-5 relative">
+                    <!-- Ánh sáng viền Blaugrana phát quang phía sau -->
+                    <div class="absolute -inset-2 rounded-3xl barca-gradient opacity-40 blur-2xl"></div>
+
+                    <!-- Khung ảnh chính Messi dạng trắng đen -->
+                    <div class="relative rounded-3xl overflow-hidden bg-barca-card border-2 border-white/15 shadow-2xl">
+                        <img src="images/messi-hero.jpg" 
+                             alt="Lionel Messi FC Barcelona" 
+                             class="w-full h-[520px] object-cover messi-bw-frame">
+                        
+                        <!-- Lớp chuyển màu mờ viền dưới -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-barca-dark via-transparent to-transparent opacity-90"></div>
+
+                        <!-- Huy hiệu & Thông tin gắn góc dưới ảnh -->
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <div class="inline-block px-3 py-1 rounded bg-barca-gold/20 border border-barca-gold/40 text-barca-gold text-xs font-bold uppercase mb-2">
+                                Huyền Thoại Bất Tử #10
+                            </div>
+                            <h3 class="text-2xl font-bold font-display text-white">Lionel Andrés Messi</h3>
+                            <p class="text-xs text-gray-300 mt-1">Cầu thủ khoác áo và ghi nhiều bàn thắng nhất lịch sử Barça.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHẦN 2: CHI TIẾT VỀ MESSI ==================== -->
+    <section id="huyen-thoai-messi" class="py-24 bg-barca-card border-y border-barca-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+                <!-- Khung ảnh chân dung trắng đen -->
+                <div class="relative rounded-2xl overflow-hidden border border-white/10 group">
+                    <img src="images/messi-portrait.jpg" 
+                         alt="Chân dung Lionel Messi" 
+                         class="w-full h-[460px] object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <span class="text-barca-gold font-bold text-xs uppercase">Bản hợp đồng lịch sử</span>
+                        <h4 class="text-xl font-bold font-display text-white mt-1">Ký kết trên chiếc khăn ăn năm 2000</h4>
+                    </div>
+                </div>
+
+                <!-- Lời dẫn & thông tin -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-barca-gold">Khởi nguyên kỳ tích</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold font-display text-white uppercase mt-2">
+                            Người Thay Đổi Lịch Sử Bóng Đá Hiện Đại
+                        </h2>
+                    </div>
+
+                    <p class="text-gray-300 leading-relaxed font-normal">
+                        Năm 2000, giám đốc Carles Rexach của Barcelona đã bị thuyết phục hoàn toàn bởi tài năng phi thường của cậu bé 13 tuổi đến từ Rosario, sẵn sàng ký vào bản hợp đồng tạm thời trên một chiếc khăn ăn tại nhà hàng.
+                    </p>
+
+                    <p class="text-gray-400 text-sm leading-relaxed font-normal">
+                        Dưới sự nhào nặn của lò La Masia và sự dẫn dắt của Pep Guardiola, Messi chuyển từ vai trò tiền đạo cánh sang <strong>"Số 9 ảo"</strong>, tạo nên cỗ máy hủy diệt đưa Barcelona thâu tóm toàn bộ 6 danh hiệu vô địch trong năm 2009 (Cú ăn 6 vĩ đại nhất lịch sử).
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
+                        <div class="p-4 rounded-xl bg-barca-dark border border-white/5">
+                            <span class="text-barca-gold text-xs font-bold uppercase">Kỷ lục thế giới</span>
+                            <div class="text-2xl font-bold font-display text-white mt-1">91 Bàn Thắng</div>
+                            <p class="text-xs text-gray-400 mt-1">Ghi trong một năm dương lịch duy nhất (2012).</p>
+                        </div>
+                        <div class="p-4 rounded-xl bg-barca-dark border border-white/5">
+                            <span class="text-barca-gold text-xs font-bold uppercase">Đỉnh cao La Liga</span>
+                            <div class="text-2xl font-bold font-display text-white mt-1">474 Bàn Thắng</div>
+                            <p class="text-xs text-gray-400 mt-1">Cầu thủ ghi bàn nhiều nhất lịch sử giải đấu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHẦN 3: SƠ ĐỒ CHIẾN THUẬT TIKI-TAKA ==================== -->
+    <section id="so-do-tikitaka" class="py-24 bg-barca-dark relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest font-bold text-barca-gold">Đỉnh cao chiến thuật 2008 - 2012</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-display text-white uppercase mt-2">
+                    Sơ Đồ Chiến Thuật Tiki-Taka 4-3-3
+                </h2>
+                <p class="text-sm text-gray-400 mt-3 font-normal">
+                    Lối đá ban bật ngắn, kiểm soát bóng áp đảo và vai trò mang tính cách mạng của Messi ở vị trí <strong>"Số 9 ảo"</strong>.
+                </p>
+                <div class="h-1 w-24 barca-gradient mx-auto mt-5 rounded-full"></div>
+            </div>
+
+            <!-- Khung sân bóng mô phỏng -->
+            <div class="max-w-4xl mx-auto pitch-field rounded-3xl p-6 sm:p-10 shadow-2xl overflow-hidden">
+                <!-- Các đường vạch sân -->
+                <div class="pitch-line top-1/2 left-0 right-0 h-0"></div>
+                <div class="pitch-line top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full"></div>
+                <div class="pitch-line top-0 left-1/2 -translate-x-1/2 w-64 h-24 border-t-0"></div>
+                <div class="pitch-line bottom-0 left-1/2 -translate-x-1/2 w-64 h-24 border-b-0"></div>
+
+                <div class="relative z-10 flex flex-col justify-between h-[640px]">
+                    
+                    <!-- HÀNG CÔNG -->
+                    <div>
+                        <div class="text-center mb-3">
+                            <span class="text-[11px] uppercase font-bold tracking-wider text-barca-gold bg-black/60 px-3.5 py-1 rounded-full border border-barca-gold/30">
+                                Hàng Tấn Công
+                            </span>
+                        </div>
+                        <div class="flex justify-around items-center px-4">
+                            <!-- Tiền đạo trái: David Villa -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-gradient-to-tr from-barca-blue to-barca-garnet flex items-center justify-center font-bold font-display text-white text-base sm:text-lg border-2 border-white shadow-lg group-hover:scale-110 transition">
+                                    7
+                                </div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-1">David Villa</div>
+                                <div class="text-[10px] text-gray-400">Tiền đạo cánh trái</div>
+                            </div>
+
+                            <!-- SỐ 9 ẢO: MESSI -->
+                            <div class="text-center group cursor-pointer -translate-y-2">
+                                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-barca-gold flex items-center justify-center font-bold font-display text-black text-2xl sm:text-3xl border-4 border-white shadow-2xl shadow-barca-gold/50 group-hover:scale-110 transition">
+                                    10
+                                </div>
+                                <div class="text-sm sm:text-base font-bold text-barca-gold mt-1.5 font-display">L. MESSI</div>
+                                <div class="text-[10px] font-bold text-white bg-barca-garnet px-2.5 py-0.5 rounded-full inline-block mt-0.5">Số 9 Ảo (Tự Do)</div>
+                            </div>
+
+                            <!-- Tiền đạo phải: Pedro -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-gradient-to-tr from-barca-blue to-barca-garnet flex items-center justify-center font-bold font-display text-white text-base sm:text-lg border-2 border-white shadow-lg group-hover:scale-110 transition">
+                                    17
+                                </div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-1">Pedro Rodríguez</div>
+                                <div class="text-[10px] text-gray-400">Tiền đạo cánh phải</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BỘ BA TIỀN VỆ TRUNG TÂM -->
+                    <div>
+                        <div class="text-center mb-2">
+                            <span class="text-[11px] uppercase font-bold tracking-wider text-gray-300 bg-black/60 px-3.5 py-1 rounded-full border border-white/10">
+                                Bộ Ba Tiền Vệ Huyền Thoại
+                            </span>
+                        </div>
+                        <div class="flex justify-around items-center px-8">
+                            <!-- Iniesta -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-gradient-to-tr from-barca-blue to-barca-garnet flex items-center justify-center font-bold font-display text-white text-base border-2 border-white shadow-lg group-hover:scale-110 transition">
+                                    8
+                                </div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-1">Andrés Iniesta</div>
+                                <div class="text-[10px] text-gray-400">Tiền vệ kiến thiết</div>
+                            </div>
+
+                            <!-- Busquets (Mỏ neo) -->
+                            <div class="text-center group cursor-pointer translate-y-3">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-gradient-to-tr from-barca-blue to-barca-garnet flex items-center justify-center font-bold font-display text-white text-base border-2 border-white shadow-lg group-hover:scale-110 transition">
+                                    16
+                                </div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-1">Sergio Busquets</div>
+                                <div class="text-[10px] text-gray-400">Tiền vệ mỏ neo</div>
+                            </div>
+
+                            <!-- Xavi -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 mx-auto rounded-full bg-gradient-to-tr from-barca-blue to-barca-garnet flex items-center justify-center font-bold font-display text-white text-base border-2 border-white shadow-lg group-hover:scale-110 transition">
+                                    6
+                                </div>
+                                <div class="text-xs sm:text-sm font-bold text-white mt-1">Xavi Hernández</div>
+                                <div class="text-[10px] text-gray-400">Nhạc trưởng điều tiết</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- BỘ TỨ HẬU VỆ -->
+                    <div>
+                        <div class="flex justify-between items-center px-2 sm:px-6">
+                            <!-- Abidal -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 mx-auto rounded-full bg-barca-dark flex items-center justify-center font-bold font-display text-white text-sm border-2 border-white/60 group-hover:scale-110 transition">
+                                    22
+                                </div>
+                                <div class="text-xs font-semibold text-white mt-1">Éric Abidal</div>
+                                <div class="text-[9px] text-gray-400">Hậu vệ trái</div>
+                            </div>
+
+                            <!-- Pique -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 mx-auto rounded-full bg-barca-dark flex items-center justify-center font-bold font-display text-white text-sm border-2 border-white/60 group-hover:scale-110 transition">
+                                    3
+                                </div>
+                                <div class="text-xs font-semibold text-white mt-1">Gerard Piqué</div>
+                                <div class="text-[9px] text-gray-400">Trung vệ</div>
+                            </div>
+
+                            <!-- Puyol -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 mx-auto rounded-full bg-barca-dark flex items-center justify-center font-bold font-display text-barca-gold text-sm border-2 border-barca-gold group-hover:scale-110 transition">
+                                    5
+                                </div>
+                                <div class="text-xs font-bold text-barca-gold mt-1">Carles Puyol (C)</div>
+                                <div class="text-[9px] text-gray-400">Đội trưởng</div>
+                            </div>
+
+                            <!-- Dani Alves -->
+                            <div class="text-center group cursor-pointer">
+                                <div class="w-11 h-11 sm:w-12 sm:h-12 mx-auto rounded-full bg-barca-dark flex items-center justify-center font-bold font-display text-white text-sm border-2 border-white/60 group-hover:scale-110 transition">
+                                    2
+                                </div>
+                                <div class="text-xs font-semibold text-white mt-1">Dani Alves</div>
+                                <div class="text-[9px] text-gray-400">Hậu vệ phải</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- THỦ MÔN -->
+                    <div class="text-center">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 mx-auto rounded-full bg-yellow-600 flex items-center justify-center font-bold font-display text-black text-sm border-2 border-white group-hover:scale-110 transition">
+                            1
+                        </div>
+                        <div class="text-xs font-bold text-white mt-1">Víctor Valdés</div>
+                        <div class="text-[9px] text-gray-400">Thủ môn quét</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHẦN 4: ĐỘI HÌNH THẾ HỆ VÀNG ==================== -->
+    <section id="the-he-vang" class="py-24 bg-barca-card border-t border-barca-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-xs uppercase tracking-widest font-bold text-barca-gold">Thế hệ vàng La Masia</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-display text-white uppercase mt-2">
+                    Các Cầu Thủ Huyền Thoại
+                </h2>
+                <p class="text-sm text-gray-400 mt-3 font-normal">
+                    Những đồng đội xuất chúng đã cùng Messi chinh phục mọi đỉnh cao thế giới.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Xavi -->
+                <div class="card-photo bg-barca-dark rounded-2xl overflow-hidden border border-barca-border">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/xavi.jpg" alt="Xavi Hernández" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-barca-dark via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-barca-blue text-white text-xs font-bold px-2.5 py-1 rounded font-display">#6</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold font-display text-white">Xavi Hernández</h4>
+                        <p class="text-xs text-barca-gold font-semibold uppercase mt-0.5">Nhạc Trưởng Điều Tiết</p>
+                        <p class="text-xs text-gray-400 mt-2 font-normal leading-relaxed">Bộ não thiên tài kiểm soát nhịp độ trận đấu với tỷ lệ chuyền bóng chính xác luôn trên 95%.</p>
+                    </div>
+                </div>
+
+                <!-- Iniesta -->
+                <div class="card-photo bg-barca-dark rounded-2xl overflow-hidden border border-barca-border">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/iniesta.jpg" alt="Andrés Iniesta" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-barca-dark via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-barca-garnet text-white text-xs font-bold px-2.5 py-1 rounded font-display">#8</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold font-display text-white">Andrés Iniesta</h4>
+                        <p class="text-xs text-barca-gold font-semibold uppercase mt-0.5">Ảo Thuật Gia Sân Cỏ</p>
+                        <p class="text-xs text-gray-400 mt-2 font-normal leading-relaxed">Nghệ sĩ xử lý bóng mềm mại trong không gian hẹp và tác giả của những bàn thắng định đoạt lịch sử.</p>
+                    </div>
+                </div>
+
+                <!-- Puyol -->
+                <div class="card-photo bg-barca-dark rounded-2xl overflow-hidden border border-barca-border">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/puyol.jpg" alt="Carles Puyol" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-barca-dark via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-barca-gold text-black text-xs font-bold px-2.5 py-1 rounded font-display">#5 (C)</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold font-display text-white">Carles Puyol</h4>
+                        <p class="text-xs text-barca-gold font-semibold uppercase mt-0.5">Thủ Lĩnh Quả Cảm</p>
+                        <p class="text-xs text-gray-400 mt-2 font-normal leading-relaxed">Đội trưởng huyền thoại với tinh thần quả cảm không bao giờ gục ngã và lòng trung thành trọn đời.</p>
+                    </div>
+                </div>
+
+                <!-- Busquets -->
+                <div class="card-photo bg-barca-dark rounded-2xl overflow-hidden border border-barca-border">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="images/busquets.jpg" alt="Sergio Busquets" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-barca-dark via-transparent to-transparent"></div>
+                        <span class="absolute top-4 right-4 bg-barca-blue text-white text-xs font-bold px-2.5 py-1 rounded font-display">#16</span>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="text-lg font-bold font-display text-white">Sergio Busquets</h4>
+                        <p class="text-xs text-barca-gold font-semibold uppercase mt-0.5">Bậc Thầy Thoát Vây</p>
+                        <p class="text-xs text-gray-400 mt-2 font-normal leading-relaxed">Trụ cột thầm lặng giúp bẻ gãy mọi đợt phản công của đối phương bằng tư duy chọn vị trí bậc thầy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHẦN 5: THƯ VIỆN ẢNH CÂU LẠC BỘ ==================== -->
+    <section id="thu-vien-anh" class="py-24 bg-barca-dark">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="text-xs uppercase tracking-widest font-bold text-barca-gold">Hình ảnh câu lạc bộ</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold font-display text-white uppercase mt-2">
+                        Thánh Địa & Khoảnh Khắc
+                    </h2>
+                </div>
+                <p class="text-gray-400 text-sm max-w-md mt-4 md:mt-0 font-normal">
+                    Ảnh mặc định giữ tông đen trắng nghệ thuật. Rê chuột vào ảnh để hiển thị màu sắc sống động.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Camp Nou -->
+                <div class="card-photo relative rounded-2xl overflow-hidden bg-barca-card border border-barca-border h-80">
+                    <img src="images/camp-nou.jpg" alt="Sân Spotify Camp Nou" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs font-bold text-barca-gold uppercase">Thánh địa bóng đá</span>
+                        <h4 class="text-xl font-bold font-display text-white">Spotify Camp Nou</h4>
+                        <p class="text-xs text-gray-300 mt-1 font-normal">Sân vận động lớn nhất châu Âu với sức chứa gần 100.000 cổ động viên.</p>
+                    </div>
+                </div>
+
+                <!-- Culers -->
+                <div class="card-photo relative rounded-2xl overflow-hidden bg-barca-card border border-barca-border h-80">
+                    <img src="images/culers.jpg" alt="Cổ động viên Culers" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs font-bold text-barca-gold uppercase">Cộng đồng người hâm mộ</span>
+                        <h4 class="text-xl font-bold font-display text-white">Hàng Triệu Trái Tim Culers</h4>
+                        <p class="text-xs text-gray-300 mt-1 font-normal">Tình yêu sắt son và văn hóa cổ vũ cuồng nhiệt trên toàn thế giới.</p>
+                    </div>
+                </div>
+
+                <!-- La Masia -->
+                <div class="card-photo relative rounded-2xl overflow-hidden bg-barca-card border border-barca-border h-80">
+                    <img src="images/lamasia.jpg" alt="Học viện La Masia" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="text-xs font-bold text-barca-gold uppercase">Cái nôi tài năng</span>
+                        <h4 class="text-xl font-bold font-display text-white">Học Viện La Masia</h4>
+                        <p class="text-xs text-gray-300 mt-1 font-normal">Nơi rèn giũa những huyền thoại vĩ đại và triết lý bóng đá vị nghệ thuật.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PHẦN 6: PHÒNG TRUYỀN THỐNG ==================== -->
+    <section id="phong-truyen-thong" class="py-24 bg-barca-card border-t border-barca-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-xs uppercase tracking-widest font-bold text-barca-gold">Phòng truyền thống</span>
+                <h2 class="text-3xl sm:text-5xl font-bold font-display text-white uppercase mt-2">
+                    Bảng Vàng Danh Dự
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-barca-dark border border-white/10 text-center card-photo">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-barca-blue/20 flex items-center justify-center text-barca-gold text-2xl border border-barca-blue/40">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold font-display text-white mb-2">5 Danh Hiệu</h3>
+                    <h4 class="text-xs uppercase tracking-wider text-barca-gold font-bold mb-3">UEFA Champions League (Cúp C1)</h4>
+                    <p class="text-xs text-gray-400 font-normal">Các năm 1992, 2006, 2009, 2011, 2015 – Những đêm chung kết vĩ đại khắc tên Barça lên đỉnh châu Âu.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-barca-dark border border-barca-gold/50 text-center card-photo shadow-xl shadow-barca-gold/10">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-barca-gold/20 flex items-center justify-center text-barca-gold text-2xl border border-barca-gold/60">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold font-display text-white mb-2">27 Danh Hiệu</h3>
+                    <h4 class="text-xs uppercase tracking-wider text-barca-gold font-bold mb-3">Vô Địch Giải La Liga</h4>
+                    <p class="text-xs text-gray-400 font-normal">Kỷ lục thống trị đấu trường quốc nội Tây Ban Nha với hàng loạt kỷ lục điểm số và bàn thắng.</p>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-barca-dark border border-white/10 text-center card-photo">
+                    <div class="w-16 h-16 mx-auto mb-6 rounded-full bg-barca-garnet/20 flex items-center justify-center text-barca-gold text-2xl border border-barca-garnet/40">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="text-4xl font-bold font-display text-white mb-2">31 Danh Hiệu</h3>
+                    <h4 class="text-xs uppercase tracking-wider text-barca-gold font-bold mb-3">Cúp Nhà Vua Tây Ban Nha</h4>
+                    <p class="text-xs text-gray-400 font-normal">Đội bóng giàu thành tích nhất trong lịch sử giải đấu lâu đời này.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CHÂN TRANG ==================== -->
+    <footer class="py-12 bg-[#06080b] border-t border-white/10 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <img src="images/barca-logo.svg" alt="Logo FC Barcelona" class="w-8 h-8 object-contain">
+                <span class="font-display text-base font-bold text-white tracking-widest">
+                    VISCA EL BARÇA • HƠN CẢ MỘT CÂU LẠC BỘ
+                </span>
+            </div>
+            <div class="font-normal text-xs text-gray-400">
+                Trang web tôn vinh câu lạc bộ bóng đá FC Barcelona và huyền thoại Lionel Messi.
+            </div>
+            <div class="flex space-x-4 text-gray-400 text-base">
+                <a href="#" class="hover:text-barca-gold transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-barca-gold transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="hover:text-barca-gold transition"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
